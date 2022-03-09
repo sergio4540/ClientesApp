@@ -300,5 +300,3 @@ yarn remove tailwindcss autoprefixer postcss
 | test:coverage | Run your unit tests & generates a coverage report              | npm run test:coverage | yarn test:coverage | ng test --coverage                                          |
 | lint          | Use ESLint to lint your app                                    | npm run lint          | yarn lint          | ng lint                                                     |
 | analyze       | Open webpack-bundle-analyzer                                   | npm run analyze       | yarn analyze       | webpack-bundle-analyzer dist/angular-boilerplate/stats.json |
-#   C l i e n t e s A p p  
- 
