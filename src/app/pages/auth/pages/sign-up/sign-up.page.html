@@ -1,1 +1,119 @@
-<p>sign up works!</p>
+<dx-popup id="registerPopup" [maxWidth]="720" title="Registro de usuario - User register" [(visible)]="visible" (onHiding)="onHiding()">
+    <form (submit)="onSubmit($event)">
+        <dx-form [(formData)]="register">
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="persona.idTipoPersona" editorType="dxSelectBox" [editorOptions]="{
+          items: tiposPersona,
+          displayExpr: 'nombre',
+          valueExpr: 'idTipo',
+          placeholder: '-- Seleccionar --',
+
+          onValueChanged: onValueChangedTipoPersona
+
+        }">
+                    <dxo-label text="Tipo de persona - Type of person"></dxo-label>
+                    <dxi-validation-rule type="required" message="Campo requerido">
+                    </dxi-validation-rule>
+                </dxi-item>
+
+                <dxi-item>
+                    <div *dxTemplate class="flex">
+                        <dx-button class="item-button" icon="help" type="default" stylingMode="text" (onClick)="onClickAyuda($event)">
+                        </dx-button>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="persona.idTipoDocumento" editorType="dxSelectBox" [editorOptions]="{
+          items: tiposDocumento,
+          displayExpr: 'nombre',
+          valueExpr: 'idTipo',
+          placeholder: '-- Seleccionar --',
+
+          onValueChanged: onValueChangedTipoDocumento
+        }">
+                    <dxo-label text="Tipo documento - ID type"></dxo-label>
+                    <dxi-validation-rule type="required" message="Campo requerido">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="persona.numeroDocumento" [editorOptions]="{
+            maxLength: maxLengthTipoPersona
+          }">
+                    <dxo-label text="Número de identificación - Identification number"></dxo-label>
+                    <dxi-validation-rule type="required" message="Campo requerido">
+                    </dxi-validation-rule>
+                    <dxi-validation-rule type="pattern" [pattern]="pattern" message="El numero de identificacion no es válido.">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="user.firstName" [editorOptions]="{inputAttr: {'style': 'text-transform: uppercase'}}">
+                    <dxo-label [text]="tipoPersona === 'NATURAL' ? 'Nombres - Name': 'Razón social - Company name'"></dxo-label>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="user.lastName" [editorOptions]="{inputAttr: {'style': 'text-transform: uppercase'}}" [visible]="tipoPersona === 'NATURAL' ? true: false">
+                    <dxo-label text="Apellidos - Lastname"></dxo-label>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxi-validation-rule type="pattern" pattern="^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$" message="No se permiten números y/o caracteres especiales.">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="user.userName">
+                    <dxo-label text="Correo electrónico - Email"></dxo-label>
+                    <dxi-validation-rule type="required" message="Campo requerido"></dxi-validation-rule>
+                    <dxi-validation-rule type="email"></dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="user.password" [editorOptions]="{
+            mode: passwordMode,
+            valueChangeEvent: 'keyup',
+            placeholder: '6+ caracteres requeridos - characters required'
+          }">
+                    <dxo-label text="Contraseña - Password"></dxo-label>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="12">
+                <dxi-item [colSpan]="11" dataField="user.passwordConfirm" [editorOptions]="{
+            mode: passwordConfirmMode,
+            inputAttr: {
+              autocomplete: 'new-password'
+            }
+          }">
+                    <dxo-label text="Confirmar contraseña - Confirm password"></dxo-label>
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxi-validation-rule type="compare" [comparisonTarget]="passwordComparison" comparisonType="===" [reevaluate]="true" message="La contraseña y la contraseña de confirmación no coinciden">
+                    </dxi-validation-rule>
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="button" horizontalAlignment="center" [buttonOptions]="{
+            text: 'Crear cuenta - Create an account',
+            type: 'default',
+            width: '100%',
+            icon: 'user',
+            height: 35,
+            useSubmitBehavior: true
+          }">
+            </dxi-item>
+        </dx-form>
+    </form>
+</dx-popup>
+
+<app-type-person [(visible)]="ayudaVisible"> </app-type-person>
+
+<dx-load-panel [position]="{ of: '#registerPopup' }" [(visible)]="loadingVisible">
+</dx-load-panel>

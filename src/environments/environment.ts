@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000/api/v1',
+  api: {
+    // general: 'https://localhost:44359/api/v1',
+    general: 'https://inclucesgeneralapii.azurewebsites.net/api/v1',
+  },
 };
 
 /*

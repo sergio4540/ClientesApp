@@ -29,6 +29,13 @@ export const ROUTER_UTILS = {
       overview: 'overview',
       profile: ':username',
     },
+    gestionRiesgo: {
+      root: 'gestion-riesgo',
+      nacional: 'nacional',
+      dashboardNacional: 'dashboard',
+      internacional: 'internacional',
+      dashboardInternacional: 'dashboard',
+    },
     errorResponse: {
       notFound: '404',
     },

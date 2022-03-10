@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: '',
+  api: {
+    general: 'https://GeneralAPI.ces.edu.co/api/v1/',
+  },
 };

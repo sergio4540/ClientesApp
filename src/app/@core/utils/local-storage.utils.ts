@@ -1,5 +1,7 @@
 export enum StorageItem {
   Auth = 'App/auth',
+  Persona = 'App/persona',
+  Encabezado = 'App/EncabezadoGestion',
   Theme = 'App/theme',
 }
 
@@ -12,6 +14,6 @@ export const setItem = (itemName: StorageItem, value: unknown): void => {
   localStorage.setItem(itemName, JSON.stringify(value));
 };
 
-export const removeItem = (itemName: StorageItem): void => {
+export const removeItem = (itemName: any): void => {
   localStorage.removeItem(itemName);
 };

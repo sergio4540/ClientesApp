@@ -20,6 +20,7 @@ const APP_ROUTES: Routes = [
     path: ROUTER_UTILS.config.base.home,
     loadChildren: async () =>
       (await import('@pages/home/home.module')).HomeModule,
+      // canLoad: [AuthGuard],
   },
   {
     path: ROUTER_UTILS.config.base.dashboard,

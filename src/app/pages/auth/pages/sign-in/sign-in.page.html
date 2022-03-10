@@ -1,9 +1,73 @@
-<div class="container flex flex-col items-center justify-center h-full">
-  <p class="mb-12 text-5xl text-center">You're not logged in!</p>
-  <button
-    class="inline-block h-12 px-6 py-3 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:ring-offset-blue-600 focus:outline-none"
-    (click)="onClickSignIn()"
-  >
-    Sign in
-  </button>
+<div class="background-ces">
+    <div class="banner-parent">
+        <!-- <div class="banner" style="background-image: url(/Content/img/banner-inicio.jpeg)"></div> -->
+        <span class="display-title">CLIENTES</span>
+    </div>
+    <div class="container container-center-email">
+        <dx-form class="mt-52 form-container form-inline d-block" #formLogin [(formData)]="login" [showColonAfterLabel]="false">
+            <dxi-item itemType="group" [colCount]="2">
+                <dxi-item itemType="group" class="no-shadow">
+                    <dxi-item itemType="group" class="mb-4 no-shadow">
+                        <p class="text-justify text-white">{{ aceptacionEspanol }}</p>
+                    </dxi-item>
+                    <dxi-item itemType="group" class="no-shadow">
+                        <p class="text-justify text-white">{{ aceptacionIngles }}</p>
+                    </dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group">
+                    <dxi-item itemType="group" class="justify-content-center no-shadow">
+                        <dxi-item itemType="group" class="text-white">
+                            <dxi-item dataField="userName" [editorOptions]="{
+                  tabIndex: 1
+                }">
+                                <dxo-label text="Email"></dxo-label>
+                                <dxi-validation-rule type="email" message="Email requerido">
+                                </dxi-validation-rule>
+                                <dxi-validation-rule type="required" message="Campo requerido">
+                                </dxi-validation-rule>
+                            </dxi-item>
+                            <dxi-item dataField="password" [editorOptions]="{
+                  tabIndex: 2,
+                  mode: 'password',
+                  showClearButton: true,
+                  onEnterKey: onEnterKeyPassword
+                }">
+                                <dxo-label text="Contraseña / password"></dxo-label>
+                                <dxi-validation-rule type="required" message="Campo requerido">
+                                </dxi-validation-rule>
+                            </dxi-item>
+                            <dxi-item itemType="group" [colCount]="8">
+                                <dxi-item itemType="empty" [colSpan]="2"></dxi-item>
+                                <dxi-item itemType="group" [colSpan]="6">
+                                    <dxi-item itemType="group">
+                                        <button *dxTemplate (click)="onClickForgotPassword()" class="font-semibold">
+                      ¿Olvidaste tu contraseña? / ¿Did you forget your password?
+                    </button>
+                                    </dxi-item>
+                                    <dxi-item itemType="group">
+                                        <div *dxTemplate class="justify-end d-flex">
+                                            <dx-button text="Iniciar sesión / Log In" class="mr-2" type="default" [tabIndex]="4" (onClick)="onClickSignIn()">
+                                            </dx-button>
+                                            <dx-button stylingMode="outlined" text="Regístrate / Sign up" type="default" [tabIndex]="3" (onClick)="onClickRegister()">
+                                            </dx-button>
+                                        </div>
+                                    </dxi-item>
+                                </dxi-item>
+                            </dxi-item>
+                        </dxi-item>
+                    </dxi-item>
+                </dxi-item>
+            </dxi-item>
+        </dx-form>
+    </div>
 </div>
+<app-footer></app-footer>
+
+<app-sign-up [(visible)]="popupRegisterVisible"></app-sign-up>
+<app-forgot-password [(visible)]="popupForgotPasswordVisible"></app-forgot-password>
+
+<!--<app-password-reset-popup
+  [(visible)]="popupResetPasswordVisible"
+  [username]="login.userName"
+>
+</app-password-reset-popup> -->
